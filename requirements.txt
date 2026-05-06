@@ -21,3 +21,6 @@ seaborn>=0.12.0
 # --- Utilities ---
 tqdm>=4.64.0
 python-dotenv>=0.21.0
+
+# --- Agentic AI ---
+google-generativeai
