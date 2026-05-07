@@ -1,4 +1,32 @@
+
 name: Docker Build and Push
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      # Updated to v4 for Node 24 support
+      - name: Checkout code
+        uses: actions/checkout@v4 
+
+      # Updated to v3 for Node 24 support
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      # Updated to v6 for the latest BuildKit features
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/leafguard-ai:latestname: Docker Build and Push
 
 on:
   push:
